@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ru.ridev.libs</groupId>
+    <artifactId>neatgestures</artifactId>
+    <version>0.1</version>
+    <name>NeatGestures library</name>
+    <packaging>swc</packaging>
+
+    <properties>
+        <flex.sdk.version>4.5.0.20967</flex.sdk.version>
+        <flexmojos.version>4.0-beta-7</flexmojos.version>
+        <flex.flexunit.version>4.0</flex.flexunit.version>
+        <flash.player.version>10.3</flash.player.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sourceEncoding>UTF-8</sourceEncoding>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>developer</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <debugSwf>true</debugSwf>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <debugSwf>false</debugSwf>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <sourceDirectory>src/main/flex</sourceDirectory>
+        <testSourceDirectory>src/test/flex</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/src/main/resources</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.flexmojos</groupId>
+                <artifactId>flexmojos-maven-plugin</artifactId>
+                <version>${flexmojos.version}</version>
+                <extensions>true</extensions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.adobe.flex</groupId>
+                        <artifactId>compiler</artifactId>
+                        <version>${flex.sdk.version}</version>
+                        <type>pom</type>
+                    </dependency>
+                </dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<!--<goal>asdoc</goal>-->
+							<goal>sources</goal>
+						</goals>
+						<phase>install</phase>
+					</execution>
+				</executions>
+                <configuration>
+                    <storepass/>
+                    <localesSourcePath>
+                        ${project.build.directory}/classes/locale/{locale}
+                    </localesSourcePath>
+                    <flexBuilderCompatibility>true</flexBuilderCompatibility>
+                    <allowSourcePathOverlap>true</allowSourcePathOverlap>
+
+                    <swfVersion>11</swfVersion>
+                    <localesCompiled>
+                        <locale>en_US</locale>
+                    </localesCompiled>
+                    <debug>${debugSwf}</debug>
+                    <targetPlayer>${flash.player.version}</targetPlayer>
+                    <keepAs3Metadatas>
+                        <!--<keepAs3Metadata>AutoData</keepAs3Metadata>-->
+                    </keepAs3Metadatas>
+                    <fonts>
+                        <managers>
+                            <manager>flash.fonts.AFEFontManager</manager>
+                            <manager>flash.fonts.JREFontManager</manager>
+                            <manager>flash.fonts.BatikFontManager</manager>
+                            <manager>flash.fonts.CFFFontManager</manager>
+                        </managers>
+                    </fonts>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>flex-framework</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flex.framework</groupId>
+            <artifactId>playerglobal</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>swc</type>
+            <classifier>10.2</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>com.adobe.flexunit</groupId>
+            <artifactId>flexunit</artifactId>
+            <version>4.0-rc-1</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>flexmojos-repository</id>
+            <url>http://repository.sonatype.org/content/groups/flexgroup/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
