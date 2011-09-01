@@ -23,7 +23,7 @@ public class NeatGesturesFrontend {
 	protected var _filteredClickWatcher:FilteredClickWatcher;
 	protected var _filteredDoubleClickWatcher:MultiClickWatcher;
 
-	public function MouseDispatcher(sourceDispatcher:IEventDispatcher) {
+	public function NeatGesturesFrontend(sourceDispatcher:IEventDispatcher) {
 		this.sourceDispatcher = sourceDispatcher;
 	}
 
