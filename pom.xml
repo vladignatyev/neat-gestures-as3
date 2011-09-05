@@ -76,7 +76,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<!--<goal>asdoc</goal>-->
+							<goal>asdoc</goal>
 							<goal>sources</goal>
 						</goals>
 						<phase>install</phase>
