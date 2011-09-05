@@ -9,7 +9,7 @@ import flash.events.MouseEvent;
 import ru.ridev.libs.neatGestures.BaseWatcher;
 import ru.ridev.libs.neatGestures.NeatMouseEvent;
 
-[Event(type="flash.events.MouseEvent", name="mouseMove")]
+[Event(name="neatMouseMove", type="ru.ridev.libs.neatGestures.NeatMouseEvent")]
 public class OptimizedMouseMoveWatcher extends BaseWatcher {
 	private var cachedMouseEvent:MouseEvent;
 	private var cachedEventTarget:IEventDispatcher;

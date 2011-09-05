@@ -12,6 +12,7 @@ import ru.ridev.libs.neatGestures.BaseWatcher;
 import ru.ridev.libs.neatGestures.DefaultWatchersPreset;
 import ru.ridev.libs.neatGestures.NeatMouseEvent;
 
+[Event(name="neatClick",type="ru.ridev.libs.neatGestures.NeatMouseEvent")]
 public class FilteredClickWatcher extends BaseWatcher {
 	private var timer:Timer;
 	private var emitingMouseEvent:NeatMouseEvent;

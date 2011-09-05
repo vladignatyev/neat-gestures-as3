@@ -12,6 +12,7 @@ import ru.ridev.libs.neatGestures.BaseWatcher;
 import ru.ridev.libs.neatGestures.DefaultWatchersPreset;
 import ru.ridev.libs.neatGestures.NeatMouseEvent;
 
+[Event(name="neatMouseDown", type="ru.ridev.libs.neatGestures.NeatMouseEvent")]
 public class FilteredMouseDownWatcher extends BaseWatcher {
 	private var timer:Timer;
 	private var emitingMouseEvent:NeatMouseEvent;
