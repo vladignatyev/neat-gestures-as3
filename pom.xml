@@ -5,7 +5,7 @@
 
     <groupId>ru.ridev.libs</groupId>
     <artifactId>neatgestures</artifactId>
-    <version>0.1</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>NeatGestures library</name>
     <packaging>swc</packaging>
 
